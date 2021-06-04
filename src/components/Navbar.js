@@ -3,6 +3,7 @@ import { Person, Search, ShoppingCart, Menu } from "@material-ui/icons";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import { Link } from "react-router-dom";
+import SideNav from "./SideNav";
 const Navbar = ()=> {
     return(
         <div>
@@ -37,8 +38,8 @@ const Navbar = ()=> {
                         </NavItem>
                 </NavRight>
                 <NavRight className="hide-on-large-only">
-                        <NavItem>
-                            <Menu className="large"/>
+                        <NavItem  data-target="mobileSide" className="sidenav-trigger">
+                            <Menu className="large sidenav-trigger" data-target="mobileSide"/>
                             <span>Menu</span>
                         </NavItem>
                 </NavRight>
@@ -49,6 +50,9 @@ const Navbar = ()=> {
             </div>
             <div className="modal" id="signin">
                 <SignIn/>
+            </div>
+            <div className="sidenav" id="mobileSide">
+                <SideNav/>
             </div>
         </div>
         
