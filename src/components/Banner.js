@@ -29,6 +29,9 @@ const Banner = () => {
                     </div>
                 </Carousel>
             </BannerContainer>
+            <BannerContainerMobile className="hide-on-large-only">
+
+            </BannerContainerMobile>
         </>
         
      );
@@ -39,5 +42,15 @@ const BannerContainer = styled.div`
     justify-content: center;
     border-radius: 0 0 50px 50px;
     overflow: hidden;
+`;
+
+const BannerContainerMobile = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border-radius: 0 0 50px 50px;
+    overflow: hidden;
+    background-color: black;
+    height: 30vh;
 `;
 export default Banner;

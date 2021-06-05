@@ -16,7 +16,7 @@ const Products = () => {
 
     },[setProducts, products]);
     return ( 
-        <ProductsContainer className="">
+        <ProductsContainer className="row container">
             {
                 products && products.map((product)=>{
                     console.log(product.id ,product);
@@ -31,10 +31,5 @@ const Products = () => {
 }
 
 const ProductsContainer = styled.div`
-    padding: 20px;
-    display: flex;
-    flex-flow: column wrap;
-    flex-direction: row;
-    justify-content: space-evenly;
 `;
 export default Products;

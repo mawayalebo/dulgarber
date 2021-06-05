@@ -1,32 +1,25 @@
 import styled  from "styled-components";
-
-
+import { Favorite } from "@material-ui/icons";
 const Product = ({product}) => {
     return ( 
-        <ProductContainer className="">
-            <ProductTop>
-                <img src={product.image} alt="" />
-            </ProductTop>
-            <ProductMiddle>
-                <span className="truncate">{product.title}</span>
-            </ProductMiddle>
+           <ProductContainer className="card col s12 m6 l3 hoverable">
+               <CardImage className="card-image">
+                   <img src={product.image}  className="responsive-img"alt="" />
+                   <div className="btn-floating grey btn-medium halfway-fab right black-text">
+                    <Favorite/>
+                    </div>
+               </CardImage>
+               
+               <div className="card-content">
+                    <span className="truncate card-title">{product.title}</span>
             
-
-        </ProductContainer>
+               </div>
+           </ProductContainer>
      );
 }
 
 const ProductContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    height: 300px;
-    border: solid black 1px;
-    border-radius: 20px;
-    margin-top: 15px;
-    z-index: 21;
-    background-color: white;
-
+ width: 450px;
 `;
 
 const ProductTop = styled.div`
@@ -46,6 +39,14 @@ const ProductMiddle = styled.div`
     > span {
          font-weight: bold;
          color: black;
+    }
+`;
+
+const CardImage = styled.div`
+    padding: 20px;
+    > img {
+        height: 150px;
+
     }
 `;
 export default Product;
