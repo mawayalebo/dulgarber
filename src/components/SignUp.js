@@ -1,28 +1,57 @@
 import styled from "styled-components";
-import Navbar from "./Navbar";
+import { auth } from "../firebase";
+import {  useState } from "react";
 
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 const SignUp = () => {
+
+    const [ createUserWithEmailAndPassword, user, loading, error ] = 
+    useCreateUserWithEmailAndPassword(auth);
+
+    
+    const [person, setPerson ] = useState({email:null, password: null});
+
+    const signUp = ()=>{
+
+        const { email , password } = person;
+        createUserWithEmailAndPassword(email, password); 
+    }
+    const handleChange = (e) =>{
+        setPerson({...person,
+            [e.target.id]: e.target.value
+        });
+    }
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        signUp();
+    }
+
+
     return (  
         <SignUpContainer>
             <SignUpForm>
-                <form>
+                { error && <p>{error.message}</p>}
+                <form onSubmit={handleSubmit}>
                     <div className="input-field">
-                        <input type="text" name="name" id="" />
+                        <input type="text" name="firstName" id="firstName" />
                         <label>First Name</label>
                     </div>
                     <div className="input-field">
-                        <input type="text" name="name" id="" />
+                        <input type="text" name="lastName" id="lastName" />
                         <label>Last Name</label>
                     </div>
                     <div className="input-field">
-                        <input type="email" name="name" id="" />
+                        <input type="email" name="email" id="email" onChange={handleChange}/>
                         <label>Email</label>
                     </div>
                     <div className="input-field">
-                        <input type="password" name="name" id="" />
+                        <input type="password" name="password" id="password" onChange={handleChange} />
                         <label>Password</label>
                     </div>
-                    <div className="btn btn-large center black white-text waves-effect waves-light">SignUp</div>
+                    <div 
+                        className="btn btn-large center black white-text waves-effect waves-light" onClick={handleSubmit}>
+                        SignUp
+                    </div>
                 </form>
             </SignUpForm>
         </SignUpContainer>

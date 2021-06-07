@@ -1,52 +1,68 @@
 import styled  from "styled-components";
 import { Favorite } from "@material-ui/icons";
+import Currency  from  "react-currency-formatter";
 const Product = ({product}) => {
     return ( 
            <ProductContainer className="card col s12 m6 l3 hoverable">
-               <CardImage className="card-image">
-                   <img src={product.image}  className="responsive-img"alt="" />
-                   <div className="btn-floating grey btn-medium halfway-fab right black-text">
-                    <Favorite/>
-                    </div>
+               <CardImage className="">
+                   <img src={product.image}  alt="" />
                </CardImage>
-               
-               <div className="card-content">
-                    <span className="truncate card-title">{product.title}</span>
-            
-               </div>
+               <Content className="card-content">
+                    <span className="truncate">{product.title}</span>
+                    <Currency quantity={product.price * 10} currency="ZAR"/>
+                    
+               </Content>
+               <Bottom>
+                    <BusketButton>
+                        <span>Add to Cart</span>
+                    </BusketButton>
+                </Bottom>
            </ProductContainer>
      );
 }
 
 const ProductContainer = styled.div`
- width: 450px;
+    width: 450px;
+
 `;
 
-const ProductTop = styled.div`
-    height: 50%;
+const FavButton = styled.div`
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
-    > img {
-        height: 50%;
-    }
-`;
-const ProductMiddle = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 10px;
-    > span {
-         font-weight: bold;
-         color: black;
-    }
 `;
 
 const CardImage = styled.div`
-    padding: 20px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
     > img {
-        height: 150px;
+        width: 150px !important;
+        height: 150px !important;
+        object-fit: contain;
 
     }
 `;
+
+const Bottom = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+`;
+const Content = styled.div`
+    padding-top: 2px !important;
+    padding-bottom: 10px !important;
+`;
+
+const BusketButton = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px 20px 0 0;
+    width: 80%;
+    background-color: lightgrey;
+    cursor: pointer;
+`;
+
 export default Product;

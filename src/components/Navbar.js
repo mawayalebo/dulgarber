@@ -4,6 +4,7 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import { Link } from "react-router-dom";
 import SideNav from "./SideNav";
+import { Hidden, Modal } from "@material-ui/core";
 const Navbar = ()=> {
     return(
         <div>
@@ -38,22 +39,12 @@ const Navbar = ()=> {
                         </NavItem>
                 </NavRight>
                 <NavRight className="hide-on-large-only">
-                        <NavItem  data-target="mobileSide" className="sidenav-trigger">
-                            <Menu className="large sidenav-trigger" data-target="mobileSide"/>
-                            <span>Menu</span>
-                        </NavItem>
+                    <NavItem  data-target="mobileSide" className="sidenav-trigger hide-on-large-only">
+                        <Menu className="large sidenav-trigger" data-target="mobileSide"/>
+                        <span>Menu</span>
+                    </NavItem>
                 </NavRight>
-                
             </NavWrapper>
-            <div className="modal" id="signup">
-                <SignUp/>
-            </div>
-            <div className="modal" id="signin">
-                <SignIn/>
-            </div>
-            <div className="sidenav" id="mobileSide">
-                <SideNav/>
-            </div>
         </div>
         
     );
