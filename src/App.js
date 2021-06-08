@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
 import SignIn from "./components/SignIn";
+import Cart from "./components/Cart";
 
 function App() {
     return ( 
@@ -13,11 +14,8 @@ function App() {
             <Route path="/" exact >
               <Home/>
             </Route>
-            <Route path="/signin" exact >
-              <SignIn/>
-            </Route>
-            <Route path="/signup" exact >
-              <SignUp/>
+            <Route path="/cart">
+              <Cart/>
             </Route>
           </Switch>
         </Router>

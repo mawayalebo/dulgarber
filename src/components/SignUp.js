@@ -1,37 +1,18 @@
 import styled from "styled-components";
 import { auth } from "../firebase";
 import {  useState } from "react";
+import { Redirect } from "react-router-dom";
 
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 const SignUp = () => {
 
-    const [ createUserWithEmailAndPassword, user, loading, error ] = 
-    useCreateUserWithEmailAndPassword(auth);
-
     
-    const [person, setPerson ] = useState({email:null, password: null});
-
-    const signUp = ()=>{
-
-        const { email , password } = person;
-        createUserWithEmailAndPassword(email, password); 
-    }
-    const handleChange = (e) =>{
-        setPerson({...person,
-            [e.target.id]: e.target.value
-        });
-    }
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        signUp();
-    }
 
 
     return (  
         <SignUpContainer>
             <SignUpForm>
-                { error && <p>{error.message}</p>}
-                <form onSubmit={handleSubmit}>
+                <form >
                     <div className="input-field">
                         <input type="text" name="firstName" id="firstName" />
                         <label>First Name</label>
@@ -41,15 +22,15 @@ const SignUp = () => {
                         <label>Last Name</label>
                     </div>
                     <div className="input-field">
-                        <input type="email" name="email" id="email" onChange={handleChange}/>
+                        <input type="email" name="email" id="email" />
                         <label>Email</label>
                     </div>
                     <div className="input-field">
-                        <input type="password" name="password" id="password" onChange={handleChange} />
+                        <input type="password" name="password" id="password"  />
                         <label>Password</label>
                     </div>
                     <div 
-                        className="btn btn-large center black white-text waves-effect waves-light" onClick={handleSubmit}>
+                        className="btn btn-large center black white-text waves-effect waves-light" >
                         SignUp
                     </div>
                 </form>

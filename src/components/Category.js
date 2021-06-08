@@ -1,12 +1,27 @@
 import styled from "styled-components";
+import { useState, useEffect } from "react";
 
 const Category = () => {
+    const [ category, setCategory ] = useState("");
+    useEffect( async() => {
+        const response = await fetch("https://fakestoreapi.com/products/categories")
+        .then(res => res.json())
+        .then(
+            (data)=>{
+                setCategory(data);
+            }
+        );
+        console.log(category);
+        return response;
+    },[]);
+    console.log(category);
     return ( 
         <Tape>
-            <span>Male</span>
-            <span>Female</span>
-            <span>Accessories</span>
-            <span>Kids</span>
+            {
+                category && category.map(item=>{
+                   return( <span className="white-text">{item}</span>)
+                })
+            }
         </Tape>
      );
 }

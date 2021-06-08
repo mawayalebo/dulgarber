@@ -5,7 +5,24 @@ import SignIn from "./SignIn";
 import { Link } from "react-router-dom";
 import SideNav from "./SideNav";
 import { Hidden, Modal } from "@material-ui/core";
+import { auth, provider } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useState } from "react";
+
+
+
 const Navbar = ()=> {
+    const signIn = (e) =>{
+        e.preventDefault();
+        auth.signInWithPopup(provider).catch((err)=>{
+            alert(err.message);
+        });
+    }
+
+    const [ user, loading, error ] = useAuthState(auth);
+
+    const [display , setDisplay ] = useState(false);
+
     return(
         <div>
             <NavWrapper>
@@ -16,35 +33,53 @@ const Navbar = ()=> {
                         </Link> 
                     </BrandLogo>
                 </NavLeft>
-                <NavMiddle>
-                    <Searchbar className="hide-on-small-only">
-                        <SearchInput type="text" placeholder="golf tees" />
-                        <Search/>
-                    </Searchbar>
+                <NavMiddle className="hide-on-med-and-down">
+                    {
+                        user && 
+                        <Profile>
+                            <div className="btn btn-floating btn-medium">
+                                <img src={user.photoURL} />
+                            </div>
+                            <span>{user.displayName}</span>
+                        </Profile>
+                    }
+                    {
+                        loading && 
+                        <NavItem>
+                            <span>fetching ...</span>
+                        </NavItem>
+                    }
                 </NavMiddle>
                 <NavRight className="hide-on-med-and-down">
-                        <NavItem >
-                            <Link to="/signup">
-                                <span className="black-text">Sign Up</span>
-                            </Link>
+                    
+                    {
+                        !user && 
+                        <NavItem onClick={signIn}>
+                            <Person className="large"/>
                         </NavItem>
-                        <NavItem >
-                            <Link to="/signin">
-                                <span className="black-text">Sign In</span>
-                            </Link> 
+                    }
+                    {
+                        user && 
+                        <NavItem>
+                            <span onClick={(e)=>{ auth.signOut() }}>Sign out</span>
                         </NavItem>
-                        <NavItem >
-                            <ShoppingCart className="large"/>
-                            <span>Cart</span>
-                        </NavItem>
+                    }
+                    
+                    <NavItem >
+                        <Link to="/cart">
+                            <ShoppingCart />
+                        </Link>
+                    </NavItem>
                 </NavRight>
                 <NavRight className="hide-on-large-only">
-                    <NavItem  data-target="mobileSide" className="sidenav-trigger hide-on-large-only">
+                    <NavItem  className="hide-on-large-onlyt" onClick={()=>{ setDisplay(!display)}}>
                         <Menu className="large sidenav-trigger" data-target="mobileSide"/>
                         <span>Menu</span>
                     </NavItem>
                 </NavRight>
+
             </NavWrapper>
+            <SideNav display={display}/>
         </div>
         
     );
@@ -56,7 +91,6 @@ const NavWrapper = styled.div`
     align-items: center;
     justify-content: space-evenly;
     padding: 15px;
-    border-bottom: solid 1px black;
     box-shadow: 0px 1px 3px grey;
     position: sticky;
     background-color: white;
@@ -72,8 +106,9 @@ const NavLeft = styled.div`
 `;
 
 const NavMiddle = styled.div`
-    flex: 0.5;
+    flex: 0.4;
     display: flex;
+    align-items: center;
     justify-content: center;
     margin-left: 20px;
 `;
@@ -90,7 +125,7 @@ const BrandLogo = styled.div`
 `;
 
 const NavRight = styled.div`
-    flex: 0.3;
+    flex: 0.5;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -98,8 +133,7 @@ const NavRight = styled.div`
 
 const NavItem = styled.div`
     display: flex;
-    justify-content: space-evenly;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     margin: 10px;
     :hover {
@@ -107,6 +141,26 @@ const NavItem = styled.div`
         cursor: pointer;
     }
     
+`;
+const Profile = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+    :hover {
+        font-weight: bold; 
+        cursor: pointer;
+    }
+    > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        > img {
+            width: 50px;
+            height: 50px;
+        }
+    }
 `;
 
 const Searchbar = styled.div`

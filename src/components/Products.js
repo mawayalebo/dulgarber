@@ -14,7 +14,7 @@ const Products = () => {
          );
         setProducts(response);
 
-    },[setProducts, products]);
+    },[]);
     return ( 
         <ProductsContainer className="row container">
             {
