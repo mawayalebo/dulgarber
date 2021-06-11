@@ -22,9 +22,13 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
     
-    <link rel="stylesheet" href="%PUBLIC_URL%/materialize/css/materialize.css">
-    <script src="%PUBLIC_URL%/materialize/js/materialize.js"></script>
     <title>React App</title>
 </head>
 
@@ -42,16 +46,16 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 </body>
-  <script
-    src="https://code.jquery.com/jquery-3.6.0.js"
-    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous">
-  </script>
-  <script>
-    $(document).ready(()=>{
-      M.AutoInit();
-      console.log("ready");
-    })
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+  <!--Other element insitialisations-->
+  <script type="text/javascript" language="javascript">
+      $( document ).ready(function(){
+          M.AutoInit();
+      });
+
   </script>
 
 </html>

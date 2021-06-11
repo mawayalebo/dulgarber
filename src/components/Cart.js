@@ -1,9 +1,9 @@
-
+ 
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Product from "./Product";
 
-const Cart = () => {
+const Cart = ({}) => {
     const [ cartItems, setCartItems ] = useState(null);
     useEffect(async() => {
         const response = await fetch("https://fakestoreapi.com/carts/5")
@@ -46,4 +46,4 @@ const CardContainer = styled.div`
 const CardImage = styled.div``;
 const CardContent = styled.div``;
 
-export default Cart;
+export default Cart;                                                                                                                                                                                                                                                           

@@ -21,8 +21,6 @@ const Navbar = ()=> {
 
     const [ user, loading, error ] = useAuthState(auth);
 
-    const [display , setDisplay ] = useState(false);
-
     return(
         <div>
             <NavWrapper>
@@ -72,14 +70,16 @@ const Navbar = ()=> {
                     </NavItem>
                 </NavRight>
                 <NavRight className="hide-on-large-only">
-                    <NavItem  className="hide-on-large-onlyt" onClick={()=>{ setDisplay(!display)}}>
+                    <NavItem  className="hide-on-large-only" >
                         <Menu className="large sidenav-trigger" data-target="mobileSide"/>
                         <span>Menu</span>
                     </NavItem>
                 </NavRight>
-
+                
             </NavWrapper>
-            <SideNav display={display}/>
+            <div className="sidenav" id="mobileSide">
+                <SideNav signIn={signIn}/>
+            </div>
         </div>
         
     );
@@ -95,6 +95,7 @@ const NavWrapper = styled.div`
     position: sticky;
     background-color: white;
     width: 100vw;
+    
 `;
 
 const NavLeft = styled.div`

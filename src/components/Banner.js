@@ -8,8 +8,8 @@ import nike_wings from "./assets/wings.jpg";
 const Banner = () => {
     return ( 
         <>
-            <BannerContainer className="hide-on-med-and-down">
-                <Carousel className="hide-on-med-and-down"
+            <BannerContainer className="">
+                <Carousel className=""
                     autoPlay={true} 
                     infiniteLoop={true} 
                     showThumbs={false}
@@ -29,9 +29,6 @@ const Banner = () => {
                     </div>
                 </Carousel>
             </BannerContainer>
-            <BannerContainerMobile className="hide-on-large-only">
-
-            </BannerContainerMobile>
         </>
         
      );
