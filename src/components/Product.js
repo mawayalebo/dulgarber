@@ -1,7 +1,16 @@
 import styled  from "styled-components";
 import { Favorite } from "@material-ui/icons";
 import Currency  from  "react-currency-formatter";
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../app/slices/basketSlice";
+
 const Product = ({product}) => {
+
+    const dispatch = useDispatch();
+
+    const pushToBasket = () => {
+        dispatch(addToBasket(product));
+    }
     return ( 
            <ProductContainer className="card col s12 m6 l3 hoverable">
                <CardImage className="">
@@ -13,7 +22,7 @@ const Product = ({product}) => {
                     
                </Content>
                <Bottom>
-                    <BusketButton>
+                    <BusketButton onClick={ pushToBasket }>
                         <span>Add to Cart</span>
                     </BusketButton>
                 </Bottom>

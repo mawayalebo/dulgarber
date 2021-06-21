@@ -8,6 +8,8 @@ import { Hidden, Modal } from "@material-ui/core";
 import { auth, provider } from "../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectBasket } from "../app/slices/basketSlice";
 
 
 
@@ -54,6 +56,7 @@ const Navbar = ()=> {
                         !user && 
                         <NavItem onClick={signIn}>
                             <Person className="large"/>
+                            <span>Use Google Account</span>
                         </NavItem>
                     }
                     {
@@ -66,6 +69,14 @@ const Navbar = ()=> {
                     <NavItem >
                         <Link to="/cart">
                             <ShoppingCart />
+                            {
+                                selectBasket.length > 0 && 
+                                <p>{selectBasket.length} Items</p>
+                            }
+                            {
+                                selectBasket.length <= 0 && 
+                                <p>Cart</p>
+                            }
                         </Link>
                     </NavItem>
                 </NavRight>

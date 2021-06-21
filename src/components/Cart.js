@@ -2,48 +2,42 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Product from "./Product";
+import { useSelector } from "react-redux";
+import { selectBasket } from "../app/slices/basketSlice";
 
-const Cart = ({}) => {
-    const [ cartItems, setCartItems ] = useState(null);
-    useEffect(async() => {
-        const response = await fetch("https://fakestoreapi.com/carts/5")
-        .then(results => results.json())
-        .then((data)=>{
-            setCartItems(data);
-        })
-        return response;
-    }, [])   
-    console.log("this is cart",cartItems);                                                                    
+const Cart = () => {
+    const products = useSelector(selectBasket);
+                                                                      
     return ( 
         <div className="container">
-            {
-                cartItems && cartItems.products.map(product => {
-                    <CardContainer>
-                        <CardImage>
-                            <img src={product.image}/>
-                        </CardImage>
-                        <CardContent>
-                            <h3>{product.titile}</h3>
-                            <p>{product.description}</p>
-                        </CardContent>
-                    </CardContainer>
-                })
-            }
+            <CartTop>
+                {
+                    products.length <= 0 && 
+                    <h1 classname="center">NO ITEMS IN BASKET</h1>
+                }
+            </CartTop>
+            <CartFeed>
+                
 
+            </CartFeed>
         </div>
      );
 }
 
-
-const CardContainer = styled.div`
+const CartFeed = styled.div`
     display: flex;
     align-items: center;
-    background-color: whitesmoke;
-    box-shadow: black 4px 2px 4px;
-    border-radius: 20px;
-
+    flex-direction: column;
 `;
-const CardImage = styled.div``;
-const CardContent = styled.div``;
+
+const CartTop = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: solid grey 1px;
+`;
+
+
+
 
 export default Cart;                                                                                                                                                                                                                                                           
