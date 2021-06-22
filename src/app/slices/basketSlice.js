@@ -10,16 +10,19 @@ const basketSlice = createSlice({
     initialState,
     reducers:{
         addToBasket:(state, action)=>{
-            initialState.items = [...state, action.payload];
+            state.items = [...state.items, action.payload];
         },
         removefromBasket:(state, action)=>{
-            console.log("nothing");
+
         }
     }
 });
 
 export const { addToBasket , removefromBasket } = basketSlice.actions;
 
-export const selectBasket =() => initialState.items.value;
+export const selectBasket = (state) => state.basket.items;
+export const selectBasketTotal = (state) => {
+    const total = state.basket.items.reduce();
+}
 
-export default basketSlice.reducer;
+export default basketSlice.reducer;   

@@ -49,8 +49,7 @@ const CardImage = styled.div`
         width: 150px !important;
         height: 150px !important;
         object-fit: contain;
-
-    }
+    } 
 `;
 
 const Bottom = styled.div`

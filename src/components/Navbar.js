@@ -23,6 +23,8 @@ const Navbar = ()=> {
 
     const [ user, loading, error ] = useAuthState(auth);
 
+    const items = useSelector(selectBasket);
+
     return(
         <div>
             <NavWrapper>
@@ -71,10 +73,10 @@ const Navbar = ()=> {
                             <ShoppingCart />
                             {
                                 selectBasket.length > 0 && 
-                                <p>{selectBasket.length} Items</p>
+                                <p>{items.length} Items</p>
                             }
                             {
-                                selectBasket.length <= 0 && 
+                                items.length <= 0 && 
                                 <p>Cart</p>
                             }
                         </Link>
@@ -88,6 +90,7 @@ const Navbar = ()=> {
                 </NavRight>
                 
             </NavWrapper>
+            { selectBasket }
             <div className="sidenav" id="mobileSide">
                 <SideNav signIn={signIn}/>
             </div>
