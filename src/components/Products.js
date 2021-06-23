@@ -13,7 +13,6 @@ const Products = () => {
              res=> res.json()
          );
         setProducts(response);
-
     },[]);
     return ( 
         <ProductsContainer className="row container">

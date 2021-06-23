@@ -18,7 +18,7 @@ const Product = ({product}) => {
                </CardImage>
                <Content className="card-content">
                     <span className="truncate">{product.title}</span>
-                    <Currency quantity={product.price * 10} currency="ZAR"/>
+                    <Currency quantity={product.price} currency="ZAR"/>
                     
                </Content>
                <Bottom>
