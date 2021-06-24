@@ -12,13 +12,31 @@ const basketSlice = createSlice({
         addToBasket:(state, action)=>{
             state.items = [...state.items, action.payload];
         },
-        removefromBasket:(state, action)=>{
+        removeFromBasket:(state, action)=>{
+            const unWantedItem = state.items.findIndex((item)=>{
+                return item.id == action.payload.id ;
+            });
 
+            const newBasketItems = [...state.items];
+
+            if(unWantedItem >= 0){
+                newBasketItems.splice(unWantedItem, 1);
+            }
+
+            state.items = newBasketItems;
+
+            /*const unWantedItem = action.payload.id;
+
+            const newBasketItems = state.items.filter((item)=>{
+                return item.id !== unWantedItem
+            });
+
+            state.items = newBasketItems;*/
         }
     }
 });
 
-export const { addToBasket , removefromBasket } = basketSlice.actions;
+export const { addToBasket , removeFromBasket } = basketSlice.actions;
 
 export const selectBasket = (state) => state.basket.items;
 

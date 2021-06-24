@@ -73,11 +73,11 @@ const Navbar = ()=> {
                             <ShoppingCart />
                             {
                                 selectBasket.length > 0 && 
-                                <p>{items.length} Items</p>
+                                <span>{items.length} Items</span>
                             }
                             {
                                 items.length <= 0 && 
-                                <p>Cart</p>
+                                <span>Cart</span>
                             }
                         </Link>
                     </NavItem>
@@ -109,6 +109,9 @@ const NavWrapper = styled.div`
     position: sticky;
     background-color: white;
     width: 100vw;
+    position: fixed;
+    z-index: 3;
+    top: 0vh;
     
 `;
 
@@ -154,6 +157,12 @@ const NavItem = styled.div`
     :hover {
         font-weight: bold; 
         cursor: pointer;
+    }
+    > a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
     }
     
 `;

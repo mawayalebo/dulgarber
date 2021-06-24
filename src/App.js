@@ -4,6 +4,7 @@ import SignUp from "./components/SignUp";
 import Navbar from "./components/Navbar";
 import SignIn from "./components/SignIn";
 import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
 
 function App() {
     return ( 
@@ -16,6 +17,9 @@ function App() {
             </Route>
             <Route path="/cart">
               <Cart/>
+            </Route>
+            <Route path="/checkout">
+              <Checkout/>
             </Route>
           </Switch>
         </Router>

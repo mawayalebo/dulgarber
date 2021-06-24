@@ -1,7 +1,13 @@
 import { Close } from "@material-ui/icons";
 import styled from "styled-components";
-
+import { removeFromBasket } from "../app/slices/basketSlice";
+import { useDispatch } from "react-redux";
 const CartItem = ({item}) => {
+    const dispatch = useDispatch();
+
+    const deleteItem = ()=>{
+        dispatch(removeFromBasket(item));
+    }
     return ( 
         <ItemContainer className="card col s12">
             <ItemImage>
@@ -12,7 +18,10 @@ const CartItem = ({item}) => {
                     <span className="activator">{item.title}</span>
                 </ItemTitle>
             </ItemContent>  
-            <CloseButton className="btn-floating halfway-fab black white-text waves-effect waves-light">
+            <CloseButton 
+                className="btn-floating halfway-fab black white-text"
+                onClick={deleteItem}
+            >
                 <Close/>
             </CloseButton>
             <div className="card-reveal black white-text">
