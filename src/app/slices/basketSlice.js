@@ -46,5 +46,6 @@ export const selectBasketTotal = (state)=>{
     }, 0);
 };
 
+export const allTotal = state => selectBasketTotal + 100;
 
 export default basketSlice.reducer;   

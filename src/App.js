@@ -6,7 +6,9 @@ import SignIn from "./components/SignIn";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
 
+
 function App() {
+
     return ( 
       <div>
         <Router>

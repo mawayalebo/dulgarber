@@ -72,12 +72,17 @@ const Navbar = ()=> {
                         <Link to="/cart">
                             <ShoppingCart />
                             {
-                                selectBasket.length > 0 && 
-                                <span>{items.length} Items</span>
+                                items.length == 0 ?
+                                <span>Cart</span>: <span></span>
+                            }
+                            
+                            {
+                                items.length == 1 ?
+                                <span>{items.length} Item</span>: <span></span>
                             }
                             {
-                                items.length <= 0 && 
-                                <span>Cart</span>
+                                items.length > 1 ?
+                                <span>{items.length} Items</span>: <span></span>
                             }
                         </Link>
                     </NavItem>
@@ -160,7 +165,7 @@ const NavItem = styled.div`
     }
     > a {
         display: flex;
-        flex-direction: column;
+        flex-direction: column; 
         align-items: center;
         margin: 10px;
     }
