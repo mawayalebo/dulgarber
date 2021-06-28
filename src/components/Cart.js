@@ -42,13 +42,16 @@ const Cart = () => {
             <CartFooter>
                 {
                     products.length > 0 &&
-                    <>
-                        <div className="container black white-text">
-                            <span>{ products.length } items </span>
-                            <span>
-                                Total Amount: <Currency quantity={total} currency="ZAR"/>
-                            </span>
-                        </div>
+                    <>  
+                        {/* 
+                            <div className="container black white-text">
+                                <span>{ products.length } items </span>
+                                <span>
+                                    Total Amount: <Currency quantity={total} currency="ZAR"/>
+                                </span>
+                            </div>
+                        */}
+                        
                         <div className="row">
                             {
                                 user?(

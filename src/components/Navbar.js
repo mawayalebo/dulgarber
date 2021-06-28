@@ -10,7 +10,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectBasket } from "../app/slices/basketSlice";
-
+import Category from "./Category";
 
 
 const Navbar = ()=> {
@@ -28,72 +28,76 @@ const Navbar = ()=> {
     return(
         <div>
             <NavWrapper>
-                <NavLeft>
-                    <BrandLogo>
-                        <Link to="/">
-                            <span>Dulgarber</span>
-                        </Link> 
-                    </BrandLogo>
-                </NavLeft>
-                <NavMiddle className="hide-on-med-and-down">
-                    {
-                        user && 
-                        <Profile>
-                            <div className="btn btn-floating btn-medium">
-                                <img src={user.photoURL} />
-                            </div>
-                            <span>{user.displayName}</span>
-                        </Profile>
-                    }
-                    {
-                        loading && 
-                        <NavItem>
-                            <span>fetching ...</span>
+                <NavTop>
+                    <NavLeft>
+                        <BrandLogo>
+                            <Link to="/">
+                                <span>Dulgarber</span>
+                            </Link> 
+                        </BrandLogo>
+                    </NavLeft>
+                    <NavMiddle className="hide-on-med-and-down">
+                        {
+                            user && 
+                            <Profile>
+                                <div className="btn btn-floating btn-medium">
+                                    <img src={user.photoURL} />
+                                </div>
+                                <span>{user.displayName}</span>
+                            </Profile>
+                        }
+                        {
+                            loading && 
+                            <NavItem>
+                                <span>fetching ...</span>
+                            </NavItem>
+                        }
+                    </NavMiddle>
+                    <NavRight className="hide-on-med-and-down">
+                        
+                        {
+                            !user && 
+                            <NavItem onClick={signIn}>
+                                <Person className="large"/>
+                                <span>Use Google Account</span>
+                            </NavItem>
+                        }
+                        {
+                            user && 
+                            <NavItem>
+                                <span onClick={(e)=>{ auth.signOut() }}>Sign out</span>
+                            </NavItem>
+                        }
+                        
+                        <NavItem >
+                            <Link to="/cart">
+                                <ShoppingCart />
+                                {
+                                    items.length == 0 ?
+                                    <span>Cart</span>: <span></span>
+                                }
+                                
+                                {
+                                    items.length == 1 ?
+                                    <span>{items.length} Item</span>: <span></span>
+                                }
+                                {
+                                    items.length > 1 ?
+                                    <span>{items.length} Items</span>: <span></span>
+                                }
+                            </Link>
                         </NavItem>
-                    }
-                </NavMiddle>
-                <NavRight className="hide-on-med-and-down">
-                    
-                    {
-                        !user && 
-                        <NavItem onClick={signIn}>
-                            <Person className="large"/>
-                            <span>Use Google Account</span>
+                    </NavRight>
+                    <NavRight className="hide-on-large-only">
+                        <NavItem  className="hide-on-large-only" >
+                            <Menu className="large sidenav-trigger" data-target="mobileSide"/>
+                            <span>Menu</span>
                         </NavItem>
-                    }
-                    {
-                        user && 
-                        <NavItem>
-                            <span onClick={(e)=>{ auth.signOut() }}>Sign out</span>
-                        </NavItem>
-                    }
-                    
-                    <NavItem >
-                        <Link to="/cart">
-                            <ShoppingCart />
-                            {
-                                items.length == 0 ?
-                                <span>Cart</span>: <span></span>
-                            }
-                            
-                            {
-                                items.length == 1 ?
-                                <span>{items.length} Item</span>: <span></span>
-                            }
-                            {
-                                items.length > 1 ?
-                                <span>{items.length} Items</span>: <span></span>
-                            }
-                        </Link>
-                    </NavItem>
-                </NavRight>
-                <NavRight className="hide-on-large-only">
-                    <NavItem  className="hide-on-large-only" >
-                        <Menu className="large sidenav-trigger" data-target="mobileSide"/>
-                        <span>Menu</span>
-                    </NavItem>
-                </NavRight>
-                
+                    </NavRight>
+                </NavTop>
+                <NavBottom>
+                    <Category/>
+                </NavBottom>
             </NavWrapper>
             { selectBasket }
             <div className="sidenav" id="mobileSide">
@@ -107,19 +111,27 @@ const Navbar = ()=> {
 
 const NavWrapper = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 15px;
-    box-shadow: 0px 1px 3px grey;
-    position: sticky;
-    background-color: white;
+    flex-direction: column;
     width: 100vw;
     position: fixed;
     z-index: 3;
     top: 0vh;
     
 `;
+const NavBottom = styled.div`
+    display: flex;
+    align-items: center;
+`;
+const NavTop = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 15px;
+    box-shadow: 0px 1px 3px grey;
+    position: sticky;
+    background-color: white;
 
+`;
 const NavLeft = styled.div`
     flex: 0.3;
     display: flex;
@@ -209,6 +221,8 @@ const SearchInput = styled.input`
         box-shadow: none !important;
     }
 `;
+
+
 
 
 

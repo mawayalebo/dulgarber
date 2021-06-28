@@ -32,7 +32,6 @@ const Tape = styled.div`
     align-items: center;
     width: 100vw;
     overflow-x: scroll;
-    margin-top: 100px;
     ::-webkit-scrollbar{
         display: none;
     }

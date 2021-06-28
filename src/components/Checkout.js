@@ -19,10 +19,7 @@ const Checkout = () => {
             currency: 'ZAR',
             name: 'Dulgarber',
             description: 'Dulgarber Online Store',
-            customer:{
-              email: user.email,
-              name: user.name
-            },
+            
             callback: function (result) {
               // This function returns a token that your server can use to capture a payment
               if (result.error) {

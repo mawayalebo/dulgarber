@@ -22,9 +22,12 @@ const Product = ({product}) => {
                     
                </Content>
                <Bottom>
-                    <BusketButton onClick={ pushToBasket }>
-                        <span>Add to Cart</span>
-                    </BusketButton>
+                    <div
+                        className="btn btn-medium black white-text"
+                        onClick={ pushToBasket }
+                    >
+                        Add to Cart
+                    </div>
                 </Bottom>
            </ProductContainer>
      );
@@ -56,6 +59,7 @@ const Bottom = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 5px;
 
 `;
 const Content = styled.div`
