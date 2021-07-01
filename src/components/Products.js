@@ -30,6 +30,6 @@ const Products = () => {
 }
 
 const ProductsContainer = styled.div`
-    margin-top: 80px;
+    margin-top: -80px;
 `;
 export default Products;

@@ -3,13 +3,12 @@ import Slide from "./Slide";
 import { ads } from "./assets/data";
 import Products from "./Products";
 import Category from "./Category";
-import Banner from "./Banner";
+import AdBanner from "./AdBanner";
 
 const Home = () => {
     return ( 
         <div className="home">
-            <Category/>
-            <Banner/>
+            <AdBanner/>
             <Products/>
         </div>
      );

@@ -13,13 +13,18 @@ const Checkout = () => {
     const basketItems = useSelector(selectBasket);
     const basketTotal = useSelector(selectBasketTotal);
   console.log(basketItems);
+  console.log(user);
     const pay = ()=>{
         yoco.showPopup({
             amountInCents: (basketTotal + 100)*100,
             currency: 'ZAR',
             name: 'Dulgarber',
             description: 'Dulgarber Online Store',
-            
+            metadata: {
+              email: user.email,
+              name: user.displayName
+            },
+
             callback: function (result) {
               // This function returns a token that your server can use to capture a payment
               if (result.error) {

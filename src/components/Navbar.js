@@ -96,7 +96,7 @@ const Navbar = ()=> {
                     </NavRight>
                 </NavTop>
                 <NavBottom>
-                    <Category/>
+                    
                 </NavBottom>
             </NavWrapper>
             { selectBasket }
