@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectBasket } from "../app/slices/basketSlice";
 import Category from "./Category";
-
+import logo from "./assets/logo.png";
 
 const Navbar = ()=> {
     const signIn = (e) =>{
@@ -27,12 +27,12 @@ const Navbar = ()=> {
 
     return(
         <div>
-            <NavWrapper>
+            <NavWrapper className="hide-on-med-and-down">
                 <NavTop>
                     <NavLeft>
                         <BrandLogo>
                             <Link to="/">
-                                <span>Dulgarber</span>
+                                <h3>Dulgarber</h3>
                             </Link> 
                         </BrandLogo>
                     </NavLeft>
@@ -89,8 +89,8 @@ const Navbar = ()=> {
                         </NavItem>
                     </NavRight>
                     <NavRight className="hide-on-large-only">
-                        <NavItem  className="hide-on-large-only" >
-                            <Menu className="large sidenav-trigger" data-target="mobileSide"/>
+                        <NavItem  className="hide-on-large-only side" >
+                            <Menu   />
                             <span>Menu</span>
                         </NavItem>
                     </NavRight>
@@ -99,7 +99,25 @@ const Navbar = ()=> {
                     
                 </NavBottom>
             </NavWrapper>
-            { selectBasket }
+            <NavMobile className="hide-on-large-only">
+                <MobileBrand>
+                    <Link to="/">
+                        <h3>Dulgarber</h3>
+                    </Link>
+                </MobileBrand>
+                <MobileBottom>
+                    <div className="sidenav-trigger" data-target="mobileSide">
+                        <Menu />
+                    </div>
+                    <div>
+                        <Search/>
+                    </div>
+                    <div>
+                        <ShoppingCart />
+                    </div>
+                </MobileBottom>
+            </NavMobile>
+
             <div className="sidenav" id="mobileSide">
                 <SideNav signIn={signIn}/>
             </div>
@@ -151,6 +169,10 @@ const NavMiddle = styled.div`
 const BrandLogo = styled.div`
     display: flex;
     align-items: content;
+    > a > img {
+        width: 150px;
+        object-fit: contain;
+    }
     > * > span {
         font-size: 40px;
         margin: 0;
@@ -221,6 +243,58 @@ const SearchInput = styled.input`
         box-shadow: none !important;
     }
 `;
+
+//mobile screens
+const NavMobile = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    padding: 20px;
+
+`;
+
+const MobileBrand = styled.div`
+    > a > img {
+        object-fit: contain;
+        height: 60px;
+    }
+    > a > h3 {
+        font-weight: bold;
+        margin: 0px;
+        margin-bottom: 5px;
+    }
+    > a {
+        color: black;
+        :hover{
+            svg {
+                font-weight: bold;
+            }
+        }
+    }
+`;
+
+const MobileBottom = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    > div { 
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        :hover{
+            font-weight: bold;
+            background-color: grey;
+            border-radius: 500px;
+            padding: 5px;
+            cursor: pointer;
+        }
+    }
+    
+`; 
 
 
 

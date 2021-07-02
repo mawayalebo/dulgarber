@@ -1,9 +1,16 @@
+import styled from "styled-components";
+
 const SearchComp = () => {
     return ( 
-        <div>
+        <SearchContainer className="container">
             <p>Search component</p>
-        </div> 
+        </SearchContainer> 
     );
 }
- 
+
+
+const SearchContainer = styled.div`
+    
+
+`;
 export default SearchComp;

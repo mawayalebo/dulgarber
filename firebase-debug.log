@@ -1,0 +1,15 @@
+[debug] [2021-07-01T15:40:23.575Z] ----------------------------------------------------------------------
+[debug] [2021-07-01T15:40:23.642Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-07-01T15:40:23.643Z] CLI Version:   9.12.1
+[debug] [2021-07-01T15:40:23.644Z] Platform:      win32
+[debug] [2021-07-01T15:40:23.644Z] Node Version:  v14.17.0
+[debug] [2021-07-01T15:40:24.489Z] Time:          Thu Jul 01 2021 17:40:23 GMT+0200 (South Africa Standard Time)
+[debug] [2021-07-01T15:40:24.489Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-07-01T15:40:24.520Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-07-01T15:40:24.587Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-07-01T15:40:24.587Z] > authorizing via signed-in user (mawayalebo@gmail.com)
+[debug] [2021-07-01T15:40:24.587Z] [iam] checking project dulgarber for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2021-07-01T15:40:24.589Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2021-07-01T15:40:24.589Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
