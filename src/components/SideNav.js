@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import { ShoppingCart } from "@material-ui/icons";
+import { selectBasket } from "../app/slices/basketSlice";
+import { useSelector } from "react-redux";
 
 const SideNav = ({signIn}) => {
 
     const [user] = useAuthState(auth);
-
+    const basketItems = useSelector(selectBasket);
     return ( 
         <SidenavContainer className="hide-on-large-only" >
             {
@@ -26,16 +28,19 @@ const SideNav = ({signIn}) => {
                     Account
                 </BlackButton>
             }
-            
-                <BlackButton 
-                    className="btn btn-large waves-effect waves-dark white black-text sidenav-close"
+            {
+                user && 
+                <BlackButton onClick={(e)=>{signIn(e)}}
+                    className="white btn btn-large waves-effect waves-dark black-text sidenav-close"
                 >
-                    <Link to="/cart" className="cartLink">
-                        <ShoppingCart/>
-                        <span>Cart</span>
-                    </Link>
-                    
+                    <div className="btn-floating user-avatar">
+                        <img src={user.photoURL}/>
+                    </div>
+                    <span>{user.email}</span>
                 </BlackButton>
+
+            }
+            
             
             
         </SidenavContainer>
@@ -58,6 +63,13 @@ const BlackButton = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+    > div.user-avatar {
+        display: flex;
+        justify-content: center;
+        > img {
+            object-fit: contain;
+        }
+    }
     .cartLink{
         display: flex;
         align-items: center;

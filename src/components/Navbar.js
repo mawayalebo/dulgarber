@@ -113,7 +113,14 @@ const Navbar = ()=> {
                         <Search/>
                     </div>
                     <div>
-                        <ShoppingCart />
+                        <Person/>
+                    </div>
+                    <div>
+                        
+                        <div className="grey black-text">
+                            <span>{items.length}</span>
+                        </div>
+                        <ShoppingCart/> 
                     </div>
                 </MobileBottom>
             </NavMobile>
@@ -147,7 +154,7 @@ const NavTop = styled.div`
     padding: 15px;
     box-shadow: 0px 1px 3px grey;
     position: sticky;
-    background-color: white;
+    background-color: white; 
 
 `;
 const NavLeft = styled.div`
@@ -284,13 +291,33 @@ const MobileBottom = styled.div`
         width: 50px;
         display: flex;
         align-items: center;
+        flex-direction: column;
         justify-content: center;
+        position: relative;
+        >svg {
+            position: relative;
+        }
+        > div {
+            border-radius: 500px;
+            padding: 0 5px;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            left: 5px;
+            > span{
+                margin: 0;
+                padding:0;
+            }
+        }
         :hover{
             font-weight: bold;
             background-color: grey;
             border-radius: 500px;
             padding: 5px;
             cursor: pointer;
+            > div {
+                background-color: transparent !important;
+            }
         }
     }
     
