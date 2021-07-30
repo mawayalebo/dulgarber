@@ -112,16 +112,19 @@ const Navbar = ()=> {
                     <div>
                         <Search/>
                     </div>
-                    <div>
-                        <Person/>
-                    </div>
-                    <div>
+                    { user && 
+                        <AccountImage>
+                            <img src={user.photoURL}/>
+                        </AccountImage>
+                    }
+                    { !user && <div><Person/></div> }
+                    <MobileCartButton to="/cart">
                         
                         <div className="grey black-text">
                             <span>{items.length}</span>
                         </div>
                         <ShoppingCart/> 
-                    </div>
+                    </MobileCartButton>
                 </MobileBottom>
             </NavMobile>
 
@@ -323,8 +326,53 @@ const MobileBottom = styled.div`
     
 `; 
 
+const MobileCartButton = styled(Link)`
+    width: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    >svg {
+        position: relative;
+        color: black;
+    }
+    > div {
+        border-radius: 500px;
+        padding: 0 5px;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        left: 5px;
+        > span{
+            margin: 0;
+            padding:0;
+        }
+    }
+    :hover{
+        font-weight: bold;
+        background-color: grey;
+        border-radius: 500px;
+        padding: 5px;
+        cursor: pointer;
+        > div {
+            background-color: transparent !important;
+        }
+    }
+`
 
-
+const AccountImage = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    > img {
+        width: 20px ;
+        height: 20px ;
+    }
+`
 
 
 export default Navbar;

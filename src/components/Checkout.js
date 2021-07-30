@@ -9,9 +9,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 
 const Checkout = () => {
+
     const [ user ] = useAuthState(auth);
     const basketItems = useSelector(selectBasket);
     const basketTotal = useSelector(selectBasketTotal);
+    
   console.log(basketItems);
   console.log(user);
     const pay = ()=>{
@@ -80,6 +82,7 @@ const Checkout = () => {
 
 
 const CheckoutContainer = styled.div`
+
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -87,12 +90,14 @@ const CheckoutContainer = styled.div`
 
 `;
 const CheckoutTop = styled.div`
+
     display: flex;
     align-items: center;
     justify-content: flex-start;
     border-bottom: solid grey 1px;
-    margin-top: 150px;
+    margin-top: 15px;
     width: 100%;
+
 `;
 const CheckoutMiddle = styled.div`
   display:flex;
@@ -133,6 +138,7 @@ const Yoco = styled.div`
 `;
 
 const Items = styled.div`
+
   display: flex;
   align-items : center;
   justify-content: space-between;
@@ -143,6 +149,7 @@ const Items = styled.div`
     height: 50px;
     object-fit: contain;
   }
+
 
 `;
 

@@ -96,6 +96,7 @@ const CartTop = styled.div`
 const CartFooter = styled.div`
     position: fixed;
     width: 100%;
+    height: 100%;
     background-color: black;
     z-index: 1;
     top: 80vh;
